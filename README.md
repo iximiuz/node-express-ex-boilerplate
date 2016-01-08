@@ -16,29 +16,29 @@ It's convenient to divide NodeJS modules into 3 types:
  - factories (provide constructors/factories functions)
  - executable
  
- First two types of modules don't have any internal state. It's a very useful property, because 
- such modules easy to test and use.
+First two types of modules don't have any internal state. It's a very useful property, because 
+such modules easy to test and use.
  
- *Executable* modules do have an internal state (since the code in each NodeJS module is executed
- only once during a first time `require` call of the module). However, if one has the same module
- placed on two or more different paths, it's possible that the code of such module will be executed
- as many times as it's required by different paths. Also, having a shared state withing the module
- makes it less testable.
+*Executable* modules do have an internal state (since the code in each NodeJS module is executed
+only once during a first time `require` call of the module). However, if one has the same module
+placed on two or more different paths, it's possible that the code of such module will be executed
+as many times as it's required by different paths. Also, having a shared state withing the module
+makes it less testable.
  
- That is, it's very convenient to have modules only of first two types in your project. In ideal 
- scenario, only *entry point* modules should be *executable*.
+That is, it's very convenient to have modules only of first two types in your project. In ideal 
+scenario, only *entry point* modules should be *executable*.
  
- Most of the ExpressJS boilerplate projects are focused on having things as simple as possible.
- They have pretty flat directory structure, don't consider an asynchronous app initialization 
- code and have a lot of *executable* modules (all routes, app, logger, etc). It could be an 
- appropriate choice for very small applications. However, having such structure for a long-living
- project leads to a unsupportable code.
+Most of the ExpressJS boilerplate projects are focused on having things as simple as possible.
+They have pretty flat directory structure, don't consider an asynchronous app initialization 
+code and have a lot of *executable* modules (all routes, app, logger, etc). It could be an 
+appropriate choice for very small applications. However, having such structure for a long-living
+project leads to a unsupportable code.
  
- This boilerplate offers an *executable*-less architecture. All modules except *entry points* are
- *factories* or *pure functional*. Even the routing system.
+This boilerplate offers an *executable*-less architecture. All modules except *entry points* are
+*factories* or *pure functional*. Even the routing system.
  
- Another important feature of this boilerplate is a separated *service layer*. For more information
- about it see **Example** section.
+Another important feature of this boilerplate is a separated *service layer*. For more information
+about it see **Example** section.
 
 ## Example 
 
