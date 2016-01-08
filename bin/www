@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var config = require('../config');
+var routes = require('../web/routes');
+var services = require('../services');
+var User = require('../domain/entities/User');
+var WebApp = require('../web/app');
+
+var app = new WebApp(config, services, routes);
+app.init(function(err) {
+    if (err) {
+        app.logger.error('Cannot initialize web app!\n', err);
+        process.exit(1);
+    }
+
+    // App is initialized. Loading fixtures.
+    app.get('repo.user', function(err, userRepo) {
+        if (err) {
+            app.logger.error('Cannot get user repo!\n', err);
+            process.exit(1);
+        }
+
+        userRepo.save(new User('John Doe'), function() {
+            app.startServer();
+        });
+    });
+});

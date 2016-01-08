@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h2 I'm content
+  a(href='/') back
+
+  h3 Users
+  ul
+    each user in users
+      li= user.name + ' (ID' + user.id + ')'

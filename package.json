@@ -1,0 +1,47 @@
+{
+  "name": "node-express-ex-boilerplate",
+  "description": "A really extendable ExpressJS app boilerplate",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Ivan Velichko",
+    "email": "iximiuz@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ostrovski/node-express-ex-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ostrovski/node-express-ex-boilerplate/issues"
+  },
+  "keywords": [
+    "express",
+    "expressjs",
+    "boilerplate",
+    "services",
+    "service layer",
+    "async",
+    "dependency injection",
+    "DIC"
+  ],
+  "dependencies": {
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "mongodb": "~2.0.43",
+    "monk": "^1.0.1",
+    "morgan": "~1.6.1",
+    "winston": "~2.1.1"
+  },
+  "devDependencies": {
+    "chai": "~3.3.0",
+    "mocha": "~2.3.3"
+  },
+  "scripts": {
+    "server_start": "node ./bin/www",
+    "command": "node ./bin/console",
+    "test": "mocha --recursive"
+  },
+  "engines": {
+    "node": "~4.1.0"
+  }
+}

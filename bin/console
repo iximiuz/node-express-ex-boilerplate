@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var config = require('../config');
+var services = require('../services');
+var App = require('../app');
+
+var app = new App(config, services);
+app.init(function(err) {
+    if (err) {
+        app.logger.error('Cannot initialize app!\n', err);
+        process.exit(1);
+    }
+
+    var command = process.argv[2];
+    switch (command) {
+        case 'ping':
+            console.log('pong');
+            break;
+
+        case 'users':
+            app.get('repo.user', function(err, userRepo) {
+                userRepo.findAll(function(err, users) {
+                    console.log(users);
+                });
+            });
+            break;
+
+        default:
+            console.error('Unknown command [' + command + ']');
+    }
+});
