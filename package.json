@@ -1,6 +1,6 @@
 {
   "name": "node-express-ex-boilerplate",
-  "description": "A really extendable ExpressJS app boilerplate",
+  "description": "A really extendable Express app boilerplate",
   "version": "0.1.0",
   "license": "MIT",
   "author": {
@@ -16,7 +16,6 @@
   },
   "keywords": [
     "express",
-    "expressjs",
     "boilerplate",
     "services",
     "service layer",

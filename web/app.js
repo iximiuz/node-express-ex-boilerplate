@@ -60,10 +60,6 @@ WebApp.prototype.startServer = function() {
     }
 };
 
-WebApp.prototype.use = function() {
-    this.expressApp.use.apply(this.expressApp, arguments);
-};
-
 WebApp.prototype._createExpressApp = function(routes) {
     var app = this.expressApp = express();
 

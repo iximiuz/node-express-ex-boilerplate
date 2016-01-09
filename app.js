@@ -3,6 +3,13 @@
 var winston = require('winston');
 
 
+/**
+ * Base application constructor.
+ *
+ * @param options - application's config object.
+ * @param services - array of services.
+ * @constructor
+ */
 function Application(options, services) {
     this.options = options || {};
     this.logger = this.createLogger();
@@ -19,6 +26,18 @@ Application.prototype.init = function(callback) {
     callAsync(callback, null);
 };
 
+/**
+ * Provides access to the specified service by async calling a callback(err, service).
+ *
+ * The service by itself could be:
+ *  - service provider function (called only once at the first service access)
+ *  - factory function (called each time a service is accessed)
+ *  - any value (however, callable values require {protect: true} option to be passed)
+ *
+ * @param {String} name - name of the service.
+ * @param {Function} callback - function(err, service)
+ * @raise {Error} - in case of unknown service name.
+ */
 Application.prototype.get = function(name, callback) {
     var service = this.services[name];
     if (!service) {
@@ -39,6 +58,23 @@ Application.prototype.get = function(name, callback) {
     }
 };
 
+/**
+ * Register a new service under the specified name.
+ *
+ * The service by itself could be:
+ *  - service provider function (called only once at the first service access)
+ *  - factory function (called each time a service is accessed)
+ *  - any value (however, callable values require {protect: true} option to be passed).
+ *
+ * @param {String} name - name of the service.
+ * @param provider - service provider function/factory function/any value.
+ * @param {Object} options - {protected: {Boolean}, factory: {Boolean}}.
+ *                            protected - if a service is just a function (not a service provider),
+ *                                        protected must be true.
+ *                            factory - if a service represented as a factory function (a function,
+ *                                      that's called each time the service is accessed), factory
+ *                                      must be true.
+ */
 Application.prototype.set = function(name, provider, options) {
     options = options || {};
     if (options.factory && options.protect) {

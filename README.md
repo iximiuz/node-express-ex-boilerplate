@@ -1,4 +1,4 @@
-# ExpressJS App Extended Boilerplate
+# Express App Extended Boilerplate
 
 [![Build Status](https://travis-ci.org/Ostrovski/node-express-ex-boilerplate.svg)](https://travis-ci.org/Ostrovski/node-express-ex-boilerplate)
  
@@ -28,7 +28,7 @@ makes it less testable.
 That is, it's very convenient to have modules only of first two types in your project. In ideal 
 scenario, only *entry point* modules should be *executable*.
  
-Most of the ExpressJS boilerplate projects are focused on having things as simple as possible.
+Most of the Express boilerplate projects are focused on having things as simple as possible.
 They have pretty flat directory structure, don't consider an asynchronous app initialization 
 code and have a lot of *executable* modules (all routes, app, logger, etc). It could be an 
 appropriate choice for very small applications. However, having such structure for a long-living
@@ -65,17 +65,20 @@ about it see **Example** section.
     // route.js
     var Router = require('express').Router;
     
-    module.exports.register = function(app) {
-        var router = Router();
-        router.get('/', function(req, res, next) {
-            app.get('userRepo', function(err, userRepo) {
-                userRepo.findById(1234, function(err, user) {
-                    res.render('Hello ' + user.name + '!');
+    var usersHandler = module.exports.usersHandler = function(app) {
+        return function handler(req, res, next) {
+            app.get('repo.user', function(err, userRepo) {
+                userRepo.findAll(function(err, users) {
+                    res.render('users', {users: users});
                 });
             });
-        });
-        
-        app.use('/hello', router);
+        }
+    };
+    
+    module.exports.register = function(app) {
+        var router = Router();
+        router.get('/', usersHandler(app));
+        app.expressApp.use('/users', router);
     };
     
     
@@ -111,11 +114,20 @@ about it see **Example** section.
     
 ## Usage
 ### Run web server
-    npm run server_start
+    npm run server_start  # default is localhost:3000
      
 ### Execute command line task
     npm run command ping
     npm run command users
 
 ## Documentation
-...
+The boilerplate provides an `Application` object, that is not an Express app.
+This `Application` object is extended by `WebApp` object, which holds an Express app
+object as a member. The `Application` object by itself can be used in *entry points*
+which don't require *web* functional, for example `console` scripts.
+
+Also the `Application` object is a Dependency Inject Container. 
+One can use `app.set(name, service)` and `app.get(name, callback)` to register new
+services and then access it within the route handlers or console scripts.
+
+For more information about it see `Application::get()` and `Application::set()` JsDocs.
