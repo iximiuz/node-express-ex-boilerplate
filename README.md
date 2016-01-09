@@ -5,7 +5,7 @@
 ## Features:
  - app object is Dependency Injection Container
  - asynchronous app initialization out of the box
- - services layer
+ - service layer
  - non-http entry points (console, etc)
  - extremely testable architecture
  
