@@ -26,7 +26,7 @@ WebApp.prototype.startServer = function() {
     this.server.on('error', onError.bind(this));
     this.server.on('listening', onListening.bind(this));
 
-    function bind() {
+    function humanifyPort(port) {
         return typeof port === 'string'
             ? 'Pipe ' + port
             : 'Port ' + port;
@@ -38,7 +38,7 @@ WebApp.prototype.startServer = function() {
         }
 
         // handle specific listen errors with friendly messages
-        var bind = bind();
+        var bind = humanifyPort(port);
         switch (error.code) {
             case 'EACCES':
                 this.logger.error(bind + ' requires elevated privileges');
@@ -56,7 +56,7 @@ WebApp.prototype.startServer = function() {
     }
 
     function onListening() {
-        this.logger.info('Server started on [' + bind() + ']');
+        this.logger.info('Server started on [' + humanifyPort(port) + ']');
     }
 };
 
