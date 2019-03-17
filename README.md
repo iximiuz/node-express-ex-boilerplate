@@ -1,6 +1,6 @@
 # Express App Extended Boilerplate
 
-[![Build Status](https://travis-ci.org/Ostrovski/node-express-ex-boilerplate.svg)](https://travis-ci.org/Ostrovski/node-express-ex-boilerplate)
+[![Build Status](https://travis-ci.org/iximiuz/node-express-ex-boilerplate.svg)](https://travis-ci.org/iximiuz/node-express-ex-boilerplate)
  
 ## Features:
  - app object is Dependency Injection Container
