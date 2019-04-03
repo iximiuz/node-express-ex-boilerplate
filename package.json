@@ -1,7 +1,7 @@
 {
   "name": "node-express-ex-boilerplate",
   "description": "A really extendable Express app boilerplate",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "author": {
     "name": "Ivan Velichko",
@@ -24,16 +24,16 @@
     "DIC"
   ],
   "dependencies": {
-    "express": "~4.13.1",
-    "jade": "~1.11.0",
-    "mongodb": "~2.0.43",
-    "monk": "^1.0.1",
-    "morgan": "~1.6.1",
-    "winston": "~2.1.1"
+    "express": "^4.16.4",
+    "jade": ">=1.11.0",
+    "mongodb": "^3.2.2",
+    "monk": "^6.0.6",
+    "morgan": "^1.9.1",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "chai": "~3.3.0",
-    "mocha": "~2.3.3"
+    "mocha": "^6.0.2"
   },
   "scripts": {
     "server_start": "node ./bin/www",
@@ -41,6 +41,6 @@
     "test": "mocha --recursive"
   },
   "engines": {
-    "node": "~4.1.0"
+    "node": ">=4.1.0"
   }
 }
